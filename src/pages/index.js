@@ -3,16 +3,15 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Button } from '@mui/material';
-import Wrapper from '../components/Wrapper';
+import Wrapper, { CenteredDiv } from '../components/Wrapper';
 import Web3 from 'web3';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ethers } from "ethers";
 import ReactCopyButtonWrapper from "react-copy-button-wrapper";
-import globalUseStyles from '../components/styleHook';
-import { ContentCopyRounded, CopyAllRounded } from '@mui/icons-material';
+import globalUseStyles, { ConnectButton, ActionButton } from '../components/styleHook';
+import { ContentCopyRounded, ArrowDownwardRounded, CallMadeRounded, CompareArrowsRounded } from '@mui/icons-material';
+import { ButtonGroup } from '@mui/material';
 
 export default function Home() {
   const [address, setAddress] = useState("");
@@ -72,9 +71,9 @@ export default function Home() {
 
   return (
     <Wrapper>
-      <Button color="primary" variant="contained" onClick={connectWallet} size="large">
+      <ConnectButton color="primary" variant="contained" onClick={connectWallet} size="large" disabled={connected}>
         {!connected ? "CONNECT" : "0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
-      </Button>
+      </ConnectButton>
       <Card sx={{ maxWidth: 345 }} className={globalClasses.userCard}>
         <Typography component="h2" className={globalClasses.addressText}>{"0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
           <ReactCopyButtonWrapper text={address}>
@@ -83,14 +82,21 @@ export default function Home() {
             </IconButton>
           </ReactCopyButtonWrapper>
         </Typography>
-        <img src="../image1.jpg" className={globalClasses.coverImage} data-nsfw-filter-status />
         <CardContent>
+          <img src="../person.svg" className={globalClasses.coverImage} data-nsfw-filter-status />
           <Typography component="h1" className={globalClasses.balanceText}>
-            {balance}<span>ETH</span>
+            {balance}<span>BNB</span>
           </Typography>
+          <CenteredDiv>
+            <ButtonGroup variant="contained" aria-label="outlined primary button group">
+              <ActionButton startIcon={<ArrowDownwardRounded fontSize="small" />}>Buy</ActionButton>
+              <ActionButton startIcon={<CallMadeRounded fontSize="small" />}>Send</ActionButton>
+              <ActionButton startIcon={<CompareArrowsRounded fontSize="small" />}>Send</ActionButton>
+            </ButtonGroup>
+          </CenteredDiv>
         </CardContent>
-      </Card>
+      </Card >
       <ToastContainer style={{ fontSize: 12, padding: "5px !important", lineHeight: "15px" }} />
-    </Wrapper>
+    </Wrapper >
   );
 }

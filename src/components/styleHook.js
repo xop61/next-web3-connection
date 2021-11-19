@@ -1,4 +1,7 @@
+import { Button } from '@mui/material';
+import { green } from '@mui/material/colors';
 import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/system';
 
 const globalUseStyles = makeStyles(() => ({
     mintButton: {
@@ -7,7 +10,8 @@ const globalUseStyles = makeStyles(() => ({
         border: '1px solid #006b94',
         marginTop: 10,
         fontSize: 20,
-        letterSpacing: 10,
+        letterSpacing: 1,
+        textTransform: "none",
         fontWeight: 700,
         '&:hover': {
             background: '#00445f',
@@ -53,6 +57,35 @@ const globalUseStyles = makeStyles(() => ({
         "& span": {
             fontSize: 18
         }
+    },
+}));
+
+
+export const ConnectButton = styled(Button)(({ theme }) => ({
+    color: "#fff",
+    borderRadius: 30,
+    fontSize: 20,
+    fontWeight: 900,
+    textTransform: "none",
+    backgroundColor: green[600],
+    '&:hover': {
+        backgroundColor: green[800],
+    },
+    '&:disabled': {
+        color: "#fff",
+        backgroundColor: green[600],
+    }
+}));
+
+export const ActionButton = styled(Button)(({ theme }) => ({
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: 700,
+    textTransform: "none",
+    backgroundColor: green[600],
+    borderColor: `${green[800]} !important`,
+    '&:hover': {
+        backgroundColor: green[800],
     },
 }));
 

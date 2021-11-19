@@ -19,6 +19,11 @@ const MainBox = styled.div`
     flex-direction: column;
     justify-content: center;
 `;
+const Centered = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
 export default function Wrapper({ children }) {
     return (
         <WrapperContent>
@@ -28,5 +33,14 @@ export default function Wrapper({ children }) {
                 </MainBox>
             </Container>
         </WrapperContent>
+    )
+}
+
+
+export function CenteredDiv({ children }) {
+    return (
+        <Centered>
+            {children}
+        </Centered>
     )
 }
