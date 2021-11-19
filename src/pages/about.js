@@ -1,5 +1,11 @@
-function About() {
-    return <div>About</div>
-}
+import { useRouter } from 'next/router'
 
-export default About
+export default function Page() {
+  const router = useRouter()
+
+  return (
+    <button type="button" onClick={() => router.push('/about')}>
+      Click me
+    </button>
+  )
+}
