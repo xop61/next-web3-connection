@@ -12,6 +12,7 @@ import ReactCopyButtonWrapper from "react-copy-button-wrapper";
 import globalUseStyles, { ConnectButton, ActionButton } from '../components/styleHook';
 import { ContentCopyRounded, ArrowDownwardRounded, CallMadeRounded, CompareArrowsRounded } from '@mui/icons-material';
 import { ButtonGroup } from '@mui/material';
+import Header from '../components/Header';
 
 export default function Home() {
   const [address, setAddress] = useState("");
@@ -66,37 +67,40 @@ export default function Home() {
   }
 
   useEffect(() => {
-    connectWallet()
+    // connectWallet()
   }, [])
 
   return (
-    <Wrapper>
-      <ConnectButton color="primary" variant="contained" onClick={connectWallet} size="large" disabled={connected}>
-        {!connected ? "CONNECT" : "0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
-      </ConnectButton>
-      <Card sx={{ maxWidth: 345 }} className={globalClasses.userCard}>
-        <Typography component="h2" className={globalClasses.addressText}>{"0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
-          <ReactCopyButtonWrapper text={address}>
-            <IconButton aria-label="settings" size="small">
-              <ContentCopyRounded fontSize="small" />
-            </IconButton>
-          </ReactCopyButtonWrapper>
-        </Typography>
-        <CardContent>
-          <img src="../person.svg" className={globalClasses.coverImage} data-nsfw-filter-status />
-          <Typography component="h1" className={globalClasses.balanceText}>
-            {balance}<span>BNB</span>
+    <>
+      <Header />
+      <Wrapper>
+        <ConnectButton color="primary" variant="contained" onClick={connectWallet} size="large" disabled={connected}>
+          {!connected ? "CONNECT" : "0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
+        </ConnectButton>
+        <Card sx={{ maxWidth: 345 }} className={globalClasses.userCard}>
+          <Typography component="h2" className={globalClasses.addressText}>{"0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
+            <ReactCopyButtonWrapper text={address}>
+              <IconButton aria-label="settings" size="small">
+                <ContentCopyRounded fontSize="small" />
+              </IconButton>
+            </ReactCopyButtonWrapper>
           </Typography>
-          <CenteredDiv>
-            <ButtonGroup variant="contained" aria-label="outlined primary button group">
-              <ActionButton startIcon={<ArrowDownwardRounded fontSize="small" />}>Buy</ActionButton>
-              <ActionButton startIcon={<CallMadeRounded fontSize="small" />}>Send</ActionButton>
-              <ActionButton startIcon={<CompareArrowsRounded fontSize="small" />}>Send</ActionButton>
-            </ButtonGroup>
-          </CenteredDiv>
-        </CardContent>
-      </Card >
-      <ToastContainer style={{ fontSize: 12, padding: "5px !important", lineHeight: "15px" }} />
-    </Wrapper >
+          <CardContent>
+            <img src="../person.svg" className={globalClasses.coverImage} data-nsfw-filter-status />
+            <Typography component="h1" className={globalClasses.balanceText}>
+              {balance}<span>BNB</span>
+            </Typography>
+            <CenteredDiv>
+              <ButtonGroup variant="contained" aria-label="outlined primary button group">
+                <ActionButton startIcon={<ArrowDownwardRounded fontSize="small" />}>Buy</ActionButton>
+                <ActionButton startIcon={<CallMadeRounded fontSize="small" />}>Send</ActionButton>
+                <ActionButton startIcon={<CompareArrowsRounded fontSize="small" />}>Send</ActionButton>
+              </ButtonGroup>
+            </CenteredDiv>
+          </CardContent>
+        </Card >
+        <ToastContainer style={{ fontSize: 12, padding: "5px !important", lineHeight: "15px" }} />
+      </Wrapper >
+    </>
   );
 }
