@@ -1,6 +1,9 @@
+import { useContext, useEffect } from 'react'
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import { useTheme } from '@emotion/react';
+import ThemeContext from './ThemeContext';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -50,9 +53,20 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function ThemeSwitch() {
+  const theme = useTheme();
+  const { handleToggleTheme } = useContext(ThemeContext);
+
+  const makeDarkTheme = (theme) => {
+    theme === 'dark' ? document.getElementById("__next").classList.add("light") : document.getElementById("__next").classList.add("dark")
+  }
+
+  useEffect(() => {
+    makeDarkTheme(theme)
+  }, [theme])
+
   return (
     <FormControlLabel
-      control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
+      control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked theme={theme} onClick={handleToggleTheme} />}
       label=""
     />
   );

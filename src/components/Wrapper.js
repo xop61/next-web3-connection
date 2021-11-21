@@ -9,7 +9,6 @@ const WrapperContent = styled.div`
     margin-right: auto;
     margin-left: auto;
     min-height: 100vh;
-    background: #2e2e2e;
 `;
 const MainBox = styled.div`
     margin-right: auto;
