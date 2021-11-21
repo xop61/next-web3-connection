@@ -12,7 +12,7 @@ export const AppThemeProvider = ({ children }) => {
 
     const handleToggleTheme = () => {
         theme === "light" ? setTheme("dark") : setTheme("light");
-        if (theme === "light") {
+        if (theme !== "light") {
             document.getElementById("__next").classList.remove("dark");
             document.getElementById("__next").classList.add("light");
         } else {
