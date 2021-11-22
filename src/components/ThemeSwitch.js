@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 import { styled } from '@mui/material/styles';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
@@ -53,11 +53,10 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function ThemeSwitch() {
-  const theme = useTheme();
   const { handleToggleTheme } = useContext(ThemeContext);
   return (
     <FormControlLabel
-      control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked theme={theme} onClick={handleToggleTheme} />}
+      control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked={true} onClick={handleToggleTheme} />}
       label=""
     />
   );

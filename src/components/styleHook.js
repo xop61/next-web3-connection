@@ -9,6 +9,7 @@ export const ConnectButton = styled(Button)(({ theme }) => ({
     fontWeight: 900,
     textTransform: "none",
     backgroundColor: green[600],
+    padding: "3px 24px",
     '&:hover': {
         backgroundColor: green[800],
     },

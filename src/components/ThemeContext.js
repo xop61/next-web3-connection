@@ -4,11 +4,17 @@ import { createContext } from 'react';
 const ThemeContext = createContext();
 
 export const AppThemeProvider = ({ children }) => {
-    const [theme, setTheme] = useState('light');
+
+    const [theme, setTheme] = useState('dark');
+    const setInitTheme = () => { document.getElementById("__next").classList.add("dark"); }
 
     useEffect(() => {
-        localStorage.setItem("theme", theme)
+        localStorage.setItem("theme", theme);
     }, [theme]);
+
+    useEffect(() => {
+        setInitTheme()
+    })
 
     const handleToggleTheme = () => {
         theme === "light" ? setTheme("dark") : setTheme("light");
@@ -20,7 +26,6 @@ export const AppThemeProvider = ({ children }) => {
             document.getElementById("__next").classList.add("dark");
         }
     };
-
     return (
         <ThemeContext.Provider value={{ theme, handleToggleTheme }}>
             {children}

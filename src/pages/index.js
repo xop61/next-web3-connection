@@ -21,36 +21,12 @@ export default function Home() {
   const { theme } = useContext(ThemeContext);
 
   const globalUseStyles = makeStyles(() => ({
-    mintButton: {
-      color: '#fff',
-      background: '#006b94',
-      border: '1px solid #006b94',
-      marginTop: 10,
-      fontSize: 20,
-      letterSpacing: 1,
-      textTransform: "none",
-      fontWeight: 700,
-      '&:hover': {
-        background: '#00445f',
-        color: '#fff',
-        borderColor: "#00445f"
-      },
-      '&:disabled': {
-        color: 'transparent',
-        background: '#004964',
-        border: '1px solid #004964',
-      },
-      '& span': {
-        color: "#fff",
-        width: 20,
-        height: 20
-      }
-    },
     userCard: {
       marginTop: 20,
       marginRight: "auto",
       marginLeft: "auto",
       width: 360,
+      marginBottom: 40,
       backgroundColor: theme === "light" ? "#fff" : "#333"
     },
     coverImage: {
@@ -135,17 +111,10 @@ export default function Home() {
     setBalance(ethers.utils.formatEther(balanceAccount));
   }
 
-  useEffect(() => {
-    connectWallet()
-  }, [])
-
   return (
     <>
       <Header />
       <Wrapper>
-        <ConnectButton color="primary" variant="contained" onClick={connectWallet} size="large" disabled={connected}>
-          {!connected ? "CONNECT" : "0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
-        </ConnectButton>
         <Card sx={{ maxWidth: 345 }} className={globalClasses.userCard}>
           <Typography component="h2" className={globalClasses.addressText}>{"0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
             <ReactCopyButtonWrapper text={address}>
