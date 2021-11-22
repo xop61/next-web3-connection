@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ethers } from "ethers";
 import ReactCopyButtonWrapper from "react-copy-button-wrapper";
-import { ConnectButton, ActionButton } from '../components/styleHook';
+import { ActionButton } from '../components/styleHook';
 import { ContentCopyRounded, ArrowDownwardRounded, CallMadeRounded, CompareArrowsRounded } from '@mui/icons-material';
 import { ButtonGroup } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -111,9 +111,17 @@ export default function Home() {
     setBalance(ethers.utils.formatEther(balanceAccount));
   }
 
+  useEffect(() => {
+    connectWallet()
+  }, [])
+
   return (
     <>
-      <Header />
+      <Header
+        handleConnect={connectWallet}
+        address={address}
+        connected={connected}
+      />
       <Wrapper>
         <Card sx={{ maxWidth: 345 }} className={globalClasses.userCard}>
           <Typography component="h2" className={globalClasses.addressText}>{"0x" + address.slice(2, 4) + "..." + address.slice(38, 42)}
